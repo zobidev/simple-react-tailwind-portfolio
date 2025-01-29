@@ -1,47 +1,48 @@
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { IoHomeOutline } from "react-icons/io5";
 import { IoBagOutline } from "react-icons/io5";
 import { PiCodeSimpleBold } from "react-icons/pi";
 import { MdOutlineContacts } from "react-icons/md";
 
+const upernavbar = [
+  { label: "Home", path: "/", icon: <IoHomeOutline className="text-lg" /> },
+  {
+    label: "Experience",
+    path: "/experience",
+    icon: <IoBagOutline className="text-lg" />,
+  },
+  {
+    label: "Projects",
+    path: "/projects",
+    icon: <PiCodeSimpleBold className="text-lg" />,
+  },
+  {
+    label: "Contact",
+    path: "/contact",
+    icon: <MdOutlineContacts className="text-lg" />,
+  },
+];
+
 const Bar = () => {
+  const pathname = usePathname();
   return (
-    <div className="mb-20 bg-[#0D9488] text-white">
+    <div className="bg-[#0D9488] text-white">
       <nav className="flex justify-center items-center gap-6 p-4 text-sm font-medium font-sans">
-        <Link
-          href="/"
-          className="flex flex-col justify-center items-center
-        hover:text-[#e4dbdb] duration-700 ease-in-out"
-        >
-          <IoHomeOutline className="text-lg" />
-          Home
-        </Link>
-
-        <Link
-          href="/experience"
-          className="flex flex-col justify-center items-center hover:text-[#e4dbdb] duration-700 ease-in-out"
-        >
-          <IoBagOutline className="text-lg" />
-          Experience
-        </Link>
-
-        <Link
-          href="/projects"
-          className="flex flex-col justify-center items-center
-          hover:text-[#e4dbdb] duration-700 ease-in-out"
-        >
-          <PiCodeSimpleBold className="text-lg" />
-          Projects
-        </Link>
-
-        <Link
-          href="/contact"
-          className="flex flex-col justify-center items-center
-          hover:text-[#e4dbdb] duration-700 ease-in-out"
-        >
-          <MdOutlineContacts className="text-lg" />
-          Contact
-        </Link>
+        {upernavbar.map((item, i) => (
+          <Link
+            key={i}
+            href={item.path}
+            className={`flex flex-col justify-center items-center
+      hover:text-[#e4dbdb] duration-700 ease-in-out ${
+        pathname === item.path ? "text-[#e4dbdb]" : ""
+      }`}
+          >
+            {item.icon}
+            {item.label}
+          </Link>
+        ))}
       </nav>
     </div>
   );

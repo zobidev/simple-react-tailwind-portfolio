@@ -24,16 +24,16 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="max-sm:flex max-md:flex-col md:min-h-[100vh]  flex lg:min-h-[100vh] xl:min-h-[100vh] 2xl:min-h-[100vh] lg:flex xl:flex 2xl:flex">
-          <div className="max-sm:hidden sm:hidden max-md:hidden md:block lg:block xl:block 2xl:block">
+        <div className="flex-col md:flex-row min-h-[100vh] flex">
+          <div className="hidden md:block">
             <Navbar />
           </div>
-          <div className="max-sm:block sm:block max-md:block md:hidden lg:hidden xl:hiddden 2xl:hidden">
-            <Bar />
-          </div>
-          <main className="sm:w-full sm:p-7 max-md:w-full max-md:p-7 flex flex-col p-10 grow">
+          <main className="w-full p-7 flex flex-col md:p-10 grow">
             {children}
           </main>
+          <div className="block md:hidden sticky bottom-0">
+            <Bar />
+          </div>
         </div>
       </body>
     </html>
